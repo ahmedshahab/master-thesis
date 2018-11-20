@@ -1,0 +1,165 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Klokantech Basic GL Style using ol-mapbox-style preview</title>
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans" />
+  <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+  <link rel="stylesheet" href="resources/ol.css">
+  <script src="https://cdn.klokantech.com/osmnames/v1/autocomplete.js"></script>
+   <link href="https://cdn.klokantech.com/osmnames/v1/autocomplete.css" rel="stylesheet" />
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+    #map {
+      width: 100%;
+      height: 100%;
+      background-color: #f8f4f0;
+    }
+	#directions {
+	  z-index : 2000;
+	  position : absolute;
+      top: 2em;
+      left: 81em;
+	  width: 310px;
+      height: 210px;	  
+      background-color: white;
+	  border-style: solid;
+	  border-color : black;
+	  border-width : 1px;
+	  padding : 2px;
+	  overflow:scroll;
+    }
+	#add_input{
+		z-index : 1000;
+		position : absolute;
+		top: 2em;
+		left: 6em;
+		background-color: #E8E8E8;
+		border: 1px outset;
+		border-color : black;
+
+	    padding : 4px;		
+	}
+	#tools{
+		z-index : 1000;
+		position : absolute;
+		top: 6em;
+		left: 6em;
+		background-color: #E8E8E8;
+		border: 1px outset;
+		border-color : black;
+	    padding : 2px;
+		z-index: 1;
+	}
+	.button {
+		background-color: #4CAF50; /* Green */
+		border: none;
+		color: white;
+		padding: 5px 20px;
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+		font-size: 16px;
+		margin: 4px 2px;
+		cursor: pointer;
+	}
+	.autocomplete {
+	  /*the container must be positioned relative:*/
+	  position: relative;
+	  display: inline-block;
+	}
+
+	input {
+	  border: 1px solid transparent;
+	  background-color: #f1f1f1;
+	  padding: 10px;
+	  font-size: 16px;
+	}
+
+	input[type=text] {
+	  background-color: #f1f1f1;
+	  //width: 100%;
+	}
+
+	input[type=submit] {
+	  background-color: DodgerBlue;
+	  color: #fff;
+	  cursor: pointer;
+	}
+
+	.autocomplete-items {
+	  position: absolute;
+	  border: 1px solid #d4d4d4;
+	  border-bottom: none;
+	  border-top: none;
+	  z-index: 99;
+	  /*position the autocomplete items to be the same width as the container:*/
+	  top: 100%;
+	  left: 0;
+	  right: 0;
+	}
+
+	.autocomplete-items div {
+	  z-index:2;
+	  padding: 10px;
+	  cursor: pointer;
+	  background-color: #fff; 
+	  border-bottom: 1px solid #d4d4d4; 
+	}
+
+	.autocomplete-items div:hover {
+	  /*when hovering an item:*/
+	  background-color: #e9e9e9; 
+	}
+
+	.autocomplete-active {
+	  /*when navigating through the items using the arrow keys:*/
+	  background-color: DodgerBlue !important; 
+	  color: #ffffff; 
+	}
+
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <div id="directions">
+	<h2 style = 'background-color : grey;'>Directions</h2>
+  </div>
+
+	  <div class="autocomplete" id = 'add_input'>
+		From :
+		<input type="text"  id="search1">
+		To :
+		<input type="text" style = "" id = "search2">
+		<button class="button" id="getRoute" style="background-color: #555555;" onclick="getRoute()">Get Route</button>
+		<button class="button" id="start-animation" style="margin-left:10px; background-color: #555555;">Start Navigation</button>
+		
+		<!--<button class="button" id = 'next' onclick="moveNext()" style="margin-left:10px; background-color: #555555;">Next</button>-->
+	   </div>
+
+   
+   <div id="tools">
+		Find POIs : <input type="text" id="address" placeholder="Search POI e.g. Hotel..." />
+		<button class="button" id = 'but' onclick="findPlaces()" autocomplete="on" style = "background-color: #555555;" id = "search">Search</button>
+		<button class="button" id = 'but' onclick="resetMap()" style="margin-left:10px; background-color: #555555;" >Reset Map</button>
+		<button class="button" id = 'geolocate' style="margin-left:10px; background-color: #555555;" >Geolocate</button>
+   </div>
+   
+   
+  <p>Selected: <strong id="address-value">none</strong></p>
+  <script>var apiKey = '3DrAruyB6Ntic3Gf2p2N'</script>
+  <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=fetch,Promise"></script>
+
+  <script src="resources/ol.js"></script>
+  <script src="geolocation-orientation.js" type="text/javascript"></script>
+  <script src="jquery.min.js"></script>
+  <script src="turf.js"></script>
+  <script src="jquery.js"></script>
+  <script src="olms.js"></script>
+  <script src="ol.js"></script>
+  
+  
+</body>
