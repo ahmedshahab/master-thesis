@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="robots" content="index, all" />
+    <title>ol3cesium tracking example</title>
+
+    <link rel="stylesheet" href="resources/ol.css" type="text/css"></link>
+    <style>.cesium-credit-textContainer { display: inline-block; font-size: 50%; line-height: 100%;}</style>
+  </head>
+  <body>
+    <div id="map2d" style="width:1200px;height:600px;float:left;"></div>
+    <!--<div id="map3d" style="width:600px;height:400px;float:left;position:relative;"></div>-->
+    <div><input type="button" value="Track" onclick="javascript:toggleTracking()" /></div>
+	<div><input type="button" value="Navi Mode" onclick="javascript:NaviMode()" /></div>
+	<div><input type="button" value="Current View Settings" onclick="javascript:getCurrentViewParameters()" /></div>
+	<div><input type="button" value="Set Zoom 10" onclick="javascript:setZoom()"/></div>
+	<div><input type="button" value="Reset Map" onclick="javascript:resetMap()"/></div>
+    <div>An OpenLayers point moves randomly. It is tracked in 3D.
+	<script src="resources/ol.js"></script>
+	<script src="geolocation-orientation.js"></script>
+	<script src="resources/jquery.min.js"></script>
+	<script src="resources/jquery.js"></script>
+	<!--<script src="countries.js"></script>
+	<script src="points_no_nulls.js"></script>
+	<script src="lines_ka_reduced.js"></script>
+	<script src="resources/Cesium.js"></script>
+    <script src="resources/olcesium.js"></script>-->
+	<script src="geojson-vt.js"></script>
+	<script src="tracking2.js"></script>
+	
+	
+  </body>
+</html>
+
